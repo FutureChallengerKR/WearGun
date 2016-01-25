@@ -1,0 +1,125 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* weargun_proto\
+* weargun_proto\AndroidManifest.xml
+* weargun_proto\assets\
+* weargun_proto\assets\bin\
+* weargun_proto\assets\bin\Data\
+* weargun_proto\assets\bin\Data\666b803d917634f0fa8bc0cbfbbf1604
+* weargun_proto\assets\bin\Data\Managed\
+* weargun_proto\assets\bin\Data\Managed\Assembly-CSharp-firstpass.dll
+* weargun_proto\assets\bin\Data\Managed\Assembly-CSharp.dll
+* weargun_proto\assets\bin\Data\Managed\Mono.Security.dll
+* weargun_proto\assets\bin\Data\Managed\System.Core.dll
+* weargun_proto\assets\bin\Data\Managed\System.dll
+* weargun_proto\assets\bin\Data\Managed\UnityEngine.Networking.dll
+* weargun_proto\assets\bin\Data\Managed\UnityEngine.UI.dll
+* weargun_proto\assets\bin\Data\Managed\UnityEngine.dll
+* weargun_proto\assets\bin\Data\Managed\UnityEngine.dll.mdb
+* weargun_proto\assets\bin\Data\Managed\mscorlib.dll
+* weargun_proto\assets\bin\Data\Resources\
+* weargun_proto\assets\bin\Data\Resources\unity_builtin_extra
+* weargun_proto\assets\bin\Data\bc707ac7319ae4f148a8ed3cbd156e4a
+* weargun_proto\assets\bin\Data\beaebe8e7b47e4c0b93b51fad8fb14a2
+* weargun_proto\assets\bin\Data\c22be0408cec74248b876d70c820053c
+* weargun_proto\assets\bin\Data\d86f8db39330d4038a9b343c19980fbd
+* weargun_proto\assets\bin\Data\globalgamemanagers
+* weargun_proto\assets\bin\Data\globalgamemanagers.assets
+* weargun_proto\assets\bin\Data\level0
+* weargun_proto\assets\bin\Data\settings.xml
+* weargun_proto\assets\bin\Data\sharedassets0.assets.split0
+* weargun_proto\assets\bin\Data\sharedassets0.assets.split1
+* weargun_proto\assets\bin\Data\sharedassets0.assets.split10
+* weargun_proto\assets\bin\Data\sharedassets0.assets.split11
+* weargun_proto\assets\bin\Data\sharedassets0.assets.split12
+* weargun_proto\assets\bin\Data\sharedassets0.assets.split13
+* weargun_proto\assets\bin\Data\sharedassets0.assets.split14
+* weargun_proto\assets\bin\Data\sharedassets0.assets.split15
+* weargun_proto\assets\bin\Data\sharedassets0.assets.split16
+* weargun_proto\assets\bin\Data\sharedassets0.assets.split17
+* weargun_proto\assets\bin\Data\sharedassets0.assets.split18
+* weargun_proto\assets\bin\Data\sharedassets0.assets.split19
+* weargun_proto\assets\bin\Data\sharedassets0.assets.split2
+* weargun_proto\assets\bin\Data\sharedassets0.assets.split20
+* weargun_proto\assets\bin\Data\sharedassets0.assets.split3
+* weargun_proto\assets\bin\Data\sharedassets0.assets.split4
+* weargun_proto\assets\bin\Data\sharedassets0.assets.split5
+* weargun_proto\assets\bin\Data\sharedassets0.assets.split6
+* weargun_proto\assets\bin\Data\sharedassets0.assets.split7
+* weargun_proto\assets\bin\Data\sharedassets0.assets.split8
+* weargun_proto\assets\bin\Data\sharedassets0.assets.split9
+* weargun_proto\assets\bin\Data\sharedassets0.resource
+* weargun_proto\assets\bin\Data\splash.png
+* weargun_proto\assets\bin\Data\unity default resources
+* weargun_proto\libs\
+* weargun_proto\libs\armeabi-v7a\
+* weargun_proto\libs\armeabi-v7a\libmain.so
+* weargun_proto\libs\armeabi-v7a\libmono.so
+* weargun_proto\libs\armeabi-v7a\libunity.so
+* weargun_proto\libs\armeabi-v7a\libvrunity.so
+* weargun_proto\libs\unity-classes.jar
+* weargun_proto\libs\unityvractivity.jar
+* weargun_proto\libs\x86\
+* weargun_proto\libs\x86\libmain.so
+* weargun_proto\libs\x86\libmono.so
+* weargun_proto\libs\x86\libunity.so
+* weargun_proto\libs\x86\libvrunity.so
+* weargun_proto\project.properties
+* weargun_proto\res\
+* weargun_proto\res\drawable-xhdpi\
+* weargun_proto\res\drawable-xhdpi\app_banner.png
+* weargun_proto\res\drawable\
+* weargun_proto\res\drawable\app_icon.png
+* weargun_proto\res\values-v21\
+* weargun_proto\res\values-v21\styles.xml
+* weargun_proto\res\values\
+* weargun_proto\res\values\strings.xml
+* weargun_proto\src\
+* weargun_proto\src\com\
+* weargun_proto\src\com\fc\
+* weargun_proto\src\com\fc\aa\
+* weargun_proto\src\com\fc\aa\UnityPlayerActivity.java
+* weargun_proto\src\com\fc\aa\UnityPlayerNativeActivity.java
+* weargun_proto\src\com\fc\aa\UnityPlayerProxyActivity.java
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app\src\main\AndroidManifest.xml
+* assets\ => app\src\main\assets\
+* libs\armeabi-v7a\libmain.so => app\src\main\jniLibs\armeabi-v7a\libmain.so
+* libs\armeabi-v7a\libmono.so => app\src\main\jniLibs\armeabi-v7a\libmono.so
+* libs\armeabi-v7a\libunity.so => app\src\main\jniLibs\armeabi-v7a\libunity.so
+* libs\armeabi-v7a\libvrunity.so => app\src\main\jniLibs\armeabi-v7a\libvrunity.so
+* libs\unity-classes.jar => app\libs\unity-classes.jar
+* libs\unityvractivity.jar => app\libs\unityvractivity.jar
+* libs\x86\libmain.so => app\src\main\jniLibs\x86\libmain.so
+* libs\x86\libmono.so => app\src\main\jniLibs\x86\libmono.so
+* libs\x86\libunity.so => app\src\main\jniLibs\x86\libunity.so
+* libs\x86\libvrunity.so => app\src\main\jniLibs\x86\libvrunity.so
+* res\ => app\src\main\res\
+* src\ => app\src\main\java\
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)
