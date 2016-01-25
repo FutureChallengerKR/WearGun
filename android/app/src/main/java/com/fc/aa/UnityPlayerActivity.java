@@ -124,7 +124,7 @@ public class UnityPlayerActivity extends Activity implements DataApi.DataListene
 		{
 			case KeyEvent.KEYCODE_VOLUME_DOWN:
 				Log.i("test","Volum DOWN");
-				message = "3";
+				message = "1";
 				break;
 
 			case KeyEvent.KEYCODE_VOLUME_UP:
