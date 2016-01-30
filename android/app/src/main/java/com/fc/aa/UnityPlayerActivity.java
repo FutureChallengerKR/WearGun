@@ -1,6 +1,5 @@
 package com.fc.aa;
 
-// import
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
@@ -48,7 +47,9 @@ public class UnityPlayerActivity extends Activity implements DataApi.DataListene
 	private SensorManager mSensorManager;
 	//private Sensor mHeartSensor;
 	private Sensor mGyroSensor;
+	private String status;
 	private String message;
+	private String heartRate;
 
 
 	// Setup activity layout
@@ -65,7 +66,7 @@ public class UnityPlayerActivity extends Activity implements DataApi.DataListene
 
 
 
-
+		// Google Api Client를 Wearable 로 초기화
 		mGoogleApiClient = new GoogleApiClient.Builder(this)
 				.addApi(Wearable.API)
 				.addConnectionCallbacks(this)
@@ -118,7 +119,7 @@ public class UnityPlayerActivity extends Activity implements DataApi.DataListene
 			return mUnityPlayer.injectEvent(event);
 		return super.dispatchKeyEvent(event);
 	}
-
+	// Volume_Key event
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		switch(keyCode)
@@ -138,23 +139,22 @@ public class UnityPlayerActivity extends Activity implements DataApi.DataListene
 	// c# 스크립트와 통신하기 위한 메쏘드.
 	public void CallAndroid_U(String strMsg)
 	{
-		// 위 볼륨키 이벤트에서 받은 int vol 값을 c# 으로 보내준다.
-		String strSendMsg = strMsg + String.valueOf(message);
-		Log.d("TESTUNITY",strSendMsg);
+		// 메쏘드에 받은 값들을 유니티 c# 에 보냄
+		String strSendMsg = strMsg;
+		Log.d("TESTUNITY", strSendMsg);
+		/* UnitySendMessage 함수를 사용하여 AndroidPluginManager 스크립트의 SetLog 메소드에 StrSendMsg 를 보냄 */
 		UnityPlayer.UnitySendMessage("AndroidPluginManager", "SetLog", strSendMsg);
 	}
-
 	// Pass any events not handled by (unfocused) views straight to UnityPlayer
 	@Override public boolean onKeyUp(int keyCode, KeyEvent event)     { return mUnityPlayer.injectEvent(event); }
 	//@Override public boolean onKeyDown(int keyCode, KeyEvent event)   { return mUnityPlayer.injectEvent(event); }
 	@Override public boolean onTouchEvent(MotionEvent event)          { return mUnityPlayer.injectEvent(event); }
 	/*API12*/ public boolean onGenericMotionEvent(MotionEvent event)  { return mUnityPlayer.injectEvent(event); }
 
-
+	//#########################여기까지 유니티 동작#####################################
 	// 안드로이드 웨어 통신
 	protected void onStart() {
 		super.onStart();
-
         /*Google Play Service 접속*/
 		if(!mGoogleApiClient.isConnected()){
 			mGoogleApiClient.connect();
@@ -198,34 +198,39 @@ public class UnityPlayerActivity extends Activity implements DataApi.DataListene
 	}
 
 	@Override
-	public void onDataChanged(DataEventBuffer dataEventBuffer) {
+	public void onDataChanged(final DataEventBuffer dataEventBuffer) {
 		Log.d("TEST", "onDataChanged");
-		Log.d("TEST","early"+message);
+		Log.d("TEST", "early" + message);
+		/*
 		final List<DataEvent> events = FreezableUtils.freezeIterable(dataEventBuffer);
 		dataEventBuffer.close();
+		*/
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				for (DataEvent event : events) {
+				for(DataEvent event : dataEventBuffer) {
 					if (event.getType() == DataEvent.TYPE_CHANGED) {
 						String path = event.getDataItem().getUri().getPath();
-						String CommunicationPath = "/shoot";
-						if (CommunicationPath.equals(path)) {
+						if (path.compareTo("/" + "shoot") == 0) {
 							DataMapItem dataMapItem = DataMapItem.fromDataItem(event.getDataItem());
-
-							message = dataMapItem.getDataMap().getString("data");
-							Log.d("TEST",message);
-
+							message = dataMapItem.getDataMap().getString("data");  // 전달받은 data 를 message 에 저장.
+							CallAndroid_U(message);
+							Log.d("TEST", message);
+						} else if (path.compareTo("/" + "heart") == 0) {
+							DataMapItem dataMapItem = DataMapItem.fromDataItem(event.getDataItem());
+							heartRate = dataMapItem.getDataMap().getString("data");
+							CallAndroid_U(heartRate);
+							//Log.d("TEST","HEARTRATE///"+heartRate);
+						} else if (path.compareTo("/" + "status") == 0) {
+							DataMapItem dataMapItem = DataMapItem.fromDataItem(event.getDataItem());
+							status = dataMapItem.getDataMap().getString("data");
+							CallAndroid_U(status);
 						}
-
 					} else if (event.getType() == DataEvent.TYPE_DELETED) {
-
 					}
 				}
-
 			}
 		});
-        /*Google Play Service 데이터가 변경되면 호출*/
 	}
 
 	@Override
@@ -245,9 +250,6 @@ public class UnityPlayerActivity extends Activity implements DataApi.DataListene
 	/*
 	public void SendMessage(View view)
 	{
-		String message = "ADDADDADD";
-		Send(message);
-
 	}
 
 	private void Send(String sdata) {
