@@ -178,6 +178,23 @@ public class UnityPlayerActivity extends Activity implements DataApi.DataListene
 		Wearable.DataApi.addListener(mGoogleApiClient, this);
 		Wearable.MessageApi.addListener(mGoogleApiClient, this);
 		Wearable.NodeApi.addListener(mGoogleApiClient, this);
+		/*Wear 로 앱이 켜짐을 송신*/
+		if(mGoogleApiClient.isConnected()) {
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					NodeApi.GetConnectedNodesResult nodes = Wearable.NodeApi.getConnectedNodes(mGoogleApiClient).await();
+					for (Node node : nodes.getNodes()) {
+						MessageApi.SendMessageResult result = Wearable.MessageApi.sendMessage(mGoogleApiClient, node.getId(), "/exec", "Hello World".getBytes()).await();
+						if (!result.getStatus().isSuccess()) {
+							Log.e("test", "error");
+						} else {
+							Log.i("test", "success!! sent to: " + node.getDisplayName());
+						}
+					}
+				}
+			}).start();
+		}
 		Log.d("TEST", "conneted!!!!!!!!!!111");
 	}
 
